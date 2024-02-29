@@ -1,0 +1,57 @@
+<--------------------- awk -------------------->
+
+awk '{print}' <file name> : to print the file (same as cat <file name>)
+
+awk '{print $1}' : <file name> : to print only the first column of a file
+
+awk '{print $1,$2}' <file name> : to print only the first and second column of a file
+
+awk '{print $x1,$x2,$x3,....$xn}' <file name> : to print the given columns of a file
+
+awk '/INFO/ {print $x1,$x2,$x3,....$xn}' <file name> : to print only those rows which contain 'INFO' as one of their fields and only those columns are printed which are passed in print function (to filter the information according to some field or value)
+
+awk '/INFO/ {count++} END {print count}' <file name> : gives the count how many times 'INFO' has occurred in a file (first first query will be executed i.e. first it will be counted how many times 'INFO' had occurred in the file by {count++} and then the first query is ended using 'END' and then the second query is executed to print the count
+
+awk '/INFO/ {count++} END {print "the count is: " count}' <file name> : gives the count how many times 'INFO' has occurred in a file with the provided message
+
+awk '$2 >= "x" && $2 <= "y" {print $3,$4}' <file name> : prints only those rows of column 3 and 4 which satisfies the condition applied on column 2 for those rows
+
+awk 'NR >= x && NR <= y {print $x1,$x2....}' <file name> : print only those rowsof given columns whose row number (NR) is greater than or equal to x and less than or equal to y
+
+*requirement for awk to work : it works well only on formatted data, structured data e.g. comma separated values (CSV file) , tab separated values (TSV file) , etc column by column
+
+<----------------------------------------------------------------------->
+
+
+<-------------------- sed ------------------->
+
+sed -n '/INFO/p' <file name> : prints only those rows which contain 'INFO' (p is used to print and -n is used for exact matching or for filtering without -n all rows will get printed)
+
+sed 's/INFO/LOG/g' <file name> : replace 'INFO' with 'LOG' everywhere in the file (g is for globally means to perform the command in full file , s is for subreplace i.e. we are replacing a substring within a string)
+
+sed -n -e '/INFO/=' <file name> : gives all the line numbers where 'INFO' is appeared (-e is used to tell that it is a expression i.e. '=' is used and = is used for showing and printing the line number)
+
+sed -n -e '/INFO/=' -e '/INFO/p' <file name> : gives all the line numbers along with complete line or rows, where 'INFO' is appeared (-e is used to tell that it is a expression i.e. '=' is used and = is used for showing and printing the line number)
+
+sed 'x,y s/INFO/LOG/g' <file name> : replaces 'INFO' with 'LOG' but only in linenumbers between x and y with x and y included i.e. [x,y]
+
+sed 'x,yp;y+1q' <file name> : only prints the lines between x and y [x,y] (; to pause the first command of printing and q to quit the command)
+
+*sed works on all types of data whether structured, semi-structured or unstructured line by line (full form stream editor)
+
+<--------------------------------------------------------------------->
+
+
+<------------------- grep ------------------->
+
+grep -i -c word <file name> : print the count of lines containing word (-i for case insensitive -c is used to give the count)
+
+grep -i word <file name> : prints all the lines containing word
+
+ps aux : gives all the running processes
+
+ps aux | grep ubuntu : gives all process running by ubuntu user
+
+ps aux | grep ubuntu | awk '{print $2}' : gives the second column of all the rows / process running by ubuntu user
+
+<--------------------------------------------------------------------->
