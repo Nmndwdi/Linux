@@ -1,0 +1,151 @@
+<---------------------------------- Linux Commands ------------------------------->
+
+<------------------- General Commands -------------------->
+
+date : prints the date in UTC format
+exit : to exit the terminal
+ls : list all the items in a directory
+ls -l : list all the items in a directory in a detailed view
+ls -a : list all the items in a directory along with hidden items or files
+pwd : get the present working directory
+mkdir <directory name> : to make a directory or folder
+cd <path of a directory> : to move to a particular directory
+cd .. : to move to the parent directory of the current directory
+touch <file name> : to create a new file
+clear : clean or clear the terminal
+rm <file name> : to delete a file
+rm -r <directory name> : to delete a directory
+rmdir <directory name> : to delete a directory
+cat <file name> : to see the contents of a file
+zcat <file name> : to see the contents of a zip file
+echo <text> : to print the text on the terminal
+echo <text> > <file name> : to write the text in the file
+head <file name> : to print the top 10 lines of a file
+tail <file name> : to print the bottom 10 lines of a file
+head -n <number of lines(k)> : to print the top k lines of a file
+tail -n <number of lines(k)> : to print the bottom k lines of a file
+tail -f <file name> : to print the bottom lines of a file and it will continue monitoring the addition of new lines and prints them (to check the logs of a system continuously)
+* press ctrl + C to quit after tail -f command
+less <file name> : to display the contents of a file in a paginated way (once refer from internet)
+more <file name> : to display the contents of a file in a paginated way (once refer from internet)
+* press :q to quit after less command
+cp <source of the file> <destination for the file> : copies file from source to destination
+cp -r <source of the directory> <destination for the directory> : copies directory from source to destination
+mv <source of the file or directory> <destination for the file or directory> : moves file or directory from source to destination (can be used for renaming)
+wc <file name> : gives the number of lines ,number of words and number of bytes in the file
+ln -s <source of the file> <destination for the file> : creates a softlink of the file at the destination
+ln <source of the file> <destination for the file> : creates a hardlink of the file at the destination
+cut -b [start-end] / index <file name> : gives the substring of bytes (characters) or specific character from a file , it is 1 based indexing
+echo <text> | tee <file name> : normally used to split the output of a program so that it can be both displayed and saved in a file
+sort <file name> : sort the characters of a file in alphabetically order
+diff <file1> <file2> : gives the difference between the two files
+vi <file name> : opens the file in the editor in the terminal
+vim <file name> : advance version of vi editor
+* press i to open insert mode
+* press esc to get out from insert mode
+* press :wq to exit from the editor
+ssh -i : secure shell connect (refer from internet) (used to connect and access remote system from your terminal) (port 22)
+df : used to view exact disk usage (storage)
+df -h : used to view approximate disk usage / give disk usage at high level
+du : used to view folders in a directory and their space usage
+top : shows all running processes
+* press ctrl + C or q to go back after the top command
+ps : shows the id at which particular bash is running
+fuser : (refer from internet)
+kill : used to kill any process
+free : tells about the exact disk space (RAM)
+free -h : tell about the approximate disk space
+nohup <command> : make a file nohup.out and append the output in the file nohup.out
+vmstat : shows the information about the virtual memory
+
+<---------------------------------------------------------------------------->
+
+
+<---------------- User Management and File Permissions ------------------>
+
+<------------- System - level commands --------------->
+
+uname : gives the name of the operating system that you are using
+uptime : shows from how much time the system is running , how many users are active and about the load average
+whoami : show the current user
+who : display information about all sessions on the system along with data such as boot times and login process PID numbers
+which : for locating the paths ofexecutable files
+id : gives the id , group id , groups for various users on the system
+sudo <command name> : allows you to run programs with the security privileges of another user (super user or root user) / allows you to run programs or command in which the permission denied occurs
+cat /etc/passwd : gives the list of all users
+shutdown : used to shutdown your system
+reboot : used to restart your system
+apt : commandline application package manager for ubuntu, used to install, remove, update,upgrade packages in ubuntu
+yum : package manager for CentOS
+dnf : package manager for fedora
+pacman : package manager for arch linux
+portage : for Gentoo Linux
+
+
+<--------------- user and group management commands ---------------->
+
+useradd -m <user name> : to create a user
+passwd <user name> : to update password of a user
+su <user name> : to switch user
+exit : to switch to the primary user
+userdel <user name> : to delete a user
+groupadd <group name> : to create a group
+cat /etc/group : gives the list of all groups
+gpasswd -a <user name> <group name> : to add the user to the group
+gpasswd -M <user name1 , user name2 ,...> <group name> : to add multiple users to the group
+groupdel <group name> : to delete a group
+
+<------------------------------------------------------------------->
+
+<---------------file permissions commands ------------------>
+
+chmod <permission> <file name / group name> : to change the permissions of a file or a group
+umask : a four-digit octal number used to determine the file permissions for newly created files or to determine the default permissions for a file (0002)
+chown <user name> <file name> : to change the ownership of a file
+chgrp <group name> <file name> : to change the group of a file
+
+<------------------------------------------------------------->
+
+zip -r <file name with extension.zip> <directory name> : to make a zip file of all files present in the directory (compress)
+unzip <file name> : to unzip the zipped file (extract)
+gunzip / gzip : same as zip except it's file extension will be .gz instead of .zip
+tar -cvzf <file name with extension .tar.gz> <directory name> : to make a zip file of all files present in the directory
+tar -xvzf <file name> : to unzip the zipped file
+
+scp -i : secure copy (refer from internet) (used to copy a file from system to remote server and vice versa using terminal)
+rsync -e : (refer from internet) (used to sync files from system to remote and vice versa using ssh)
+
+<------------------------------------------------------------->
+
+
+<-------------------------- Networking commands ----------------------------->
+
+*once refer from internet for all commands in this section
+
+ping <domain name or ip address> : to troubleshoot connectivity, reachability, and name resolution
+netstat : to show network status, monitoring tool for connections over the network (it shows all active internet connections and protocols)
+ifconfig : gives information about network interfaces
+traceroute <domain name or ip address> : used to trace the path network packets take from the source to a destination host or IP address
+tracepath <domain name or ip address> : used to trace the path from the origin to the destination
+*Tracepath is very similar to traceroute but uses UDP instead of ICMP packets and requires fewer user privileges to execute. However, it is also less dynamic than traceroute because it doesn't allow users to specify the protocols used to transfer data packets.
+mtr <domain name or ip address> : my traceroute, combination of ping and traceroute
+nslookup <domain name> : to discover the IP address or DNS record of a specific domain name
+telnet : (refer from internet)
+hostname : to obtain the DNS (Domain Name System) name and set the system's hostname or NIS (Network Information System) domain name
+ip : newer version of the ifconfig command , for configuring the network interfaces for Linux administrators
+ip address show : gives information about system ip addresses / network interfaces
+iwconfig : gives information about wireless interfaces
+ss : similar to netstat
+dig <domain name or ip address> : (refer from internet)
+whois <domain name or ip address> : gives all the information about the domain name or ip address
+arp : tells about the mac address of the system
+ifplugstatus : tells us whether a cable is plugged into our network interface or not (tells us whether interfaces are running or not)
+
+curl -X GET <api> : gives the response of the api
+curl -X GET <api> | jq : gives the response of the api in a fomatted manner
+wget <link address of the file> : used to download a file from the internet
+iptables : (refer from internet)
+watch <command> : execute the command after every 2 seconds and gives the output
+watch -n <time t> : execute the command after every t seconds and gives the output
+nmap : (refer from internet)
+route : (refer from internet) (to access the Linux kernel's routing tables)
